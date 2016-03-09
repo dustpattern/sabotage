@@ -70,5 +70,4 @@ install: all
 	install sabotage-conf $(PREFIX)/bin
 	install -m 644 sabotage.h $(PREFIX)/include
 	install -m 644 libsabotage.a $(PREFIX)/lib
-	install -m 644 COPYING $(PREFIX)/share/sabotage.COPYING
 endif
