@@ -1,0 +1,26 @@
+#
+# Makefile.sample
+#
+# Use: `make -f Makefile.sample'
+#
+# This file illustrates how to incorporate `sabotage' into your build.
+#
+# We use the "-Wno-uninitialized" option because sometimes sabotage
+# statements confuse the compiler.
+#
+
+CC       = gcc
+SABOTAGE = $(CURDIR)/sabotage
+CFLAGS   = -Wall -Wno-uninitialized -O0 -g
+CFLAGS  += $(shell $(CURDIR)/sabotage-conf --cflags)
+LFLAGS   = $(shell $(CURDIR)/sabotage-conf --libs)
+
+.PHONY: all
+all: sample
+
+sample: sample.c libsabotage.a
+	$(SABOTAGE) $< | $(CC) $(CFLAGS) -o $@ - $(LFLAGS)
+
+.PHONY: clean
+clean:
+	rm -f sample

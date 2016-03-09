@@ -1,0 +1,20 @@
+`make` builds everything:
+
+- `sabotage`. A script that injects failures into `.c` files.
+
+- `sabotage-conf`. A utility for building.
+
+- `libsabotage.a`. Generates failures.
+
+- `sample`. A test program.
+
+`make` recursively invokes `Makefile.sample`, which builds the `sample` test
+program. Please take a look at `Makefile.sample` for suggestions on how to
+integrate `sabotage` into your build process.
+
+`sabotage` will run just fine from the location where it is built. Invoke
+`sabotage-conf --cflags` and `sabotage-conf --libs` to get the appropriate
+`CFLAGS` and `LDFLAGS` options. It is also possible to install the tool into a
+specific location, for instance:
+
+    make install PREFIX=/usr/local
